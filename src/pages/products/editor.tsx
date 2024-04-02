@@ -45,7 +45,7 @@ const ArticleEdit:React.FC<ArticleEditProps> = ({ dispatch, userConfig, location
         meta: {
           id: Date.now(),
           title: res.filename,
-          alt: 'lowcode开发者社区'
+          alt: 'GMTH | THAILAND'
         }
       })
     }).catch(err => {
