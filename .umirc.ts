@@ -1,35 +1,86 @@
-import { defineConfig } from '@umijs/max';
+import { defineConfig } from 'umi';
+
+export const isDev = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
-  antd: {},
-  access: {},
-  model: {},
-  initialState: {},
-  request: {},
-  layout: {
-    title: '@umijs/max',
+  nodeModulesTransform: {
+    type: 'none',
   },
+  antd: {},
+  exportStatic: {},
+  externals: {
+    axios: 'window.axios',
+  },
+  scripts: [
+    'https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js',
+  ],
+  // mfsu: isDev ? {} : { production: { output: '.mfsu-production' } },  // 提高热更新效率
+  base: '/user/',
+  publicPath: '/user/',
+  outputPath: '../server/static/user',
   routes: [
     {
+      path: '/login',
+      component: '../pages/login',
+    },
+    {
+      path: '/register',
+      component: '../pages/register',
+    },
+    {
+      exact: false,
       path: '/',
-      redirect: '/home',
-    },
-    {
-      name: '首页',
-      path: '/home',
-      component: './Home',
-    },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
-    },
+      component: '@/layouts/index',
+      routes: [
+        {
+          path: '/dashboard',
+          component: '../pages/dashboard',
+        },
+        {
+          path: '/website',
+          component: '../pages/website',
+        },
+        {
+          path: '/institution',
+          component: '../pages/gov',
+        },
+        {
+          path: '/articles',
+          component: '../pages/articles',
+        },
+        {
+          path: '/articles/edit',
+          component: '../pages/articles/editor',
+        },
+        {
+          path: '/notes',
+          component: '../pages/notes',
+        },
+        {
+          path: '/note/edit',
+          component: '../pages/notes/editor',
+        },
+        {
+          path: '/products',
+          component: '../pages/products',
+        },
+        {
+          path: '/products/edit',
+          component: '../pages/products/editor',
+        },
+        {
+          path: '/videos',
+          component: '../pages/videos',
+        },
+        {
+          path: '/videos/edit',
+          component: '../pages/videos/editor',
+        },
+      ]
+    }
   ],
-  npmClient: 'npm',
+  theme: {
+    "primary-color": "#2F54EB",
+  },
+  fastRefresh: {},
 });
-

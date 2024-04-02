@@ -2,7 +2,7 @@ import { parse } from 'qs';
 
 export const isDev = process.env.NODE_ENV === 'development';
 
-export const SERVER_URL = isDev ? 'https://ptxvtv-3000.csb.app/' : (window.location.protocol + '//' + window.location.host);
+export const SERVER_URL = isDev ? 'https://ptxvtv-3000.csb.app' : (window.location.protocol + '//' + window.location.host);
 
 export function unParams(params = '?a=1&b=2&c=3') {
   if(params.indexOf('?') > -1) {

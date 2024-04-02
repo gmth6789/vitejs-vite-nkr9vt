@@ -4,7 +4,7 @@ import { history } from 'umi'
 import { SERVER_URL } from './tool'
 
 const instance = axios.create({
-    baseURL: `${SERVER_URL}/api/v0`,
+    baseURL: `https://ptxvtv-3000.csb.app/api/v0`,
     timeout: 10000,
     withCredentials: true
 });
